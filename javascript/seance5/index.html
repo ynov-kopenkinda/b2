@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playground</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      display: block;
+      height: 64px;
+      font-size: 2rem;
+      margin: 1rem 0;
+      padding: 0 1rem;
+      border: 4px dashed #fff;
+      background-color: red;
+      box-shadow: 0 0 0 4px gold;
+      color: #fff;
+    }
+
+    .va {
+      position: relative;
+      width: 100%;
+      min-height: 128px;
+      background-color: #F58B57;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      padding: 1rem;
+    }
+
+    .va b {
+      text-transform: uppercase;
+    }
+
+    .va span {
+      font-family: serif;
+      font-size: 4rem;
+    }
+
+    button {
+      padding: 1rem 2rem;
+      background: #fff;
+      border: 1px solid #000;
+      color: #000;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all .33s;
+      display: block;
+      margin: -1rem auto 2rem;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    button:hover {
+      background-color: #000000;
+      color: #fff;
+    }
+
+    .container {
+      padding: 5vh 10vw;
+    }
+
+    ul {
+      text-align-last: left;
+      list-style-image: url("https://web.archive.org/web/20090821215754/http://geocities.com/TimesSquare/Tower/9744/_borders/dollar.gif");
+    }
+
+    li {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+
+<body contenteditable="true">
+  <div class="va">
+    <b>Random Kanye West Quote</b> <br> <i>"<span>Loading...</span>"</i>
+    <div>
+      <img src="https://web.archive.org/web/20090822002313/http://geocities.com/alphaomegabird/dollar.gif">
+      <img src="https://web.archive.org/web/20090822002313/http://geocities.com/alphaomegabird/dollar.gif">
+      <img src="https://web.archive.org/web/20090822002313/http://geocities.com/alphaomegabird/dollar.gif">
+    </div>
+  </div>
+  <div class="container">
+    <img src="https://web.archive.org/web/20090728135726/http://www.geocities.com/mycatmaomao/x-ocelot.gif">
+    <br>
+    <button onclick="getQuote()">Get a new kanye west quote <img
+        src="https://web.archive.org/web/20090829173109/http://geocities.com/WestHollywood/3249/nextanim.gif"></button>
+    <h1>My site 😍🥰😻</h1>
+    <input type="text" name="funny" id="funny" placeholder="Type some shit here 💩">
+    <br>
+    <br>
+    <button id="add">Add this element to the list</button>
+    <ul>
+      <li>
+        <h3>First element</h3>
+      </li>
+    </ul>
+  </div>
+
+</body>
+<script>
+  const $input = document.querySelector('#funny');
+  const ul = document.querySelector('ul');
+  let i = 0;
+  let j = 0;
+  const colors = [
+    'red',
+    'green',
+    'gold',
+    'purple',
+  ];
+
+  const characters = [
+    {
+      firstName: "Jean",
+      lastName: "Kirschtein",
+      age: 20
+    },
+    {
+      firstName: "Lukas",
+      lastName: "Scripted",
+      age: 45
+    },
+    {
+      firstName: "Mikasa",
+      lastName: "Ackermann",
+      age: 23
+    },
+    {
+      firstName: "Eren",
+      lastName: "Jaeger",
+      age: 12
+    },
+    {
+      firstName: "Armin",
+      lastName: "Arlert",
+      age: 18
+    },
+    {
+      firstName: "Armin2",
+      lastName: "Arlert2",
+      age: 18
+    },
+  ];
+
+  const inputInterval = setInterval(() => {
+    $input.style.backgroundColor = colors[j % colors.length];
+    j = (j + 1) % colors.length;
+  }, 500);
+
+  async function getQuote() {
+    try {
+      document.querySelector('.va span').innerText = "Loading...";
+      const data = await fetch(`https://api.kanye.rest/a`);
+      const { quote } = await data.json();
+      document.querySelector('.va span').innerText = quote;
+    } catch (e) {
+      document.querySelector('.va').innerText = "Can't connect to the Kanye West quote API";
+    }
+  }
+
+  function addToList(v) {
+    console.log(v)
+    const li = document.createElement("li");
+    const h3 = document.createElement("h3");
+    h3.innerText = v;
+    li.appendChild(h3);
+    ul.appendChild(li);
+  }
+
+  getQuote();
+
+  characters.forEach(c => {
+    addToList(`${c.firstName} ${c.lastName}, ${c.age}`);
+  })
+
+  document.querySelector('#add').addEventListener('click', e => {
+    if ($input.value.trim() != '') {
+      addToList($input.value);
+      $input.value = '';
+    }
+  })
+</script>
+
+</html>

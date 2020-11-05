@@ -1,0 +1,100 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  --h: 64px;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 18px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  width: 310px;
+  height: 516px;
+  border: 1px solid #000;
+  overflow-y: scroll;
+  position: relative;
+  /* padding: var(--h) 0; */
+}
+
+.app-name {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--h);
+  line-height: var(--h);
+  text-align: center;
+  background-color: #f58b57;
+  text-transform: uppercase;
+  font-family: serif;
+  font-weight: bold;
+}
+
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list-item {
+  cursor: pointer;
+  padding: 1rem;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid #eee;
+  user-select: none;
+}
+
+.list-item:hover {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.list-item span {
+  transition: all .33s;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+#description {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  width: 256px;
+  min-height: 100vh;
+}
+
+#description ol,
+#description ul {
+  margin: 0;
+  padding: 0;
+  padding-left: 16px;
+}
+
+form {
+  padding: 16px;
+  border: 1px solid #000000;
+  margin-top: 16px;
+}
+form div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+form button {
+  color: #000000;
+  border: 1px solid #000000;
+  padding: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1.25rem;
+}

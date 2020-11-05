@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>todo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div>
+    <div id="description">
+      <h4>TP 2</h4>
+      <ol>
+        <li>Afficher la liste des élèves dans la page HTML </li>
+        <li>Ajout / édition d'élève </li>
+        <li>Suppression d'élève </li>
+        <li>Recherche textuelle </li>
+        <li>Fonctionnalité pour signer (checkbox par exemple + bouton de validation) </li>
+        <li>Mise en valeur les élèves ayant signé </li>
+      </ol>
+      <button id="preset-load">Load default characters</button>
+      <hr>
+      <h4>Mode d'emploi</h4>
+      <ul>
+        <li>Clique droit = Supprimer character</li>
+        <li>Click checkbox = changer l'etat de character (signe/non-signe)</li>
+        <li>Click [M] = Modifier le character</li>
+        <li>Filter: recherche dans nom, prenom, age, etat ("signed"/"notsigned")</li>
+        <li>Sauvegarde automatique dans le localStorage</li>
+      </ul>
+    </div>
+
+    <div id="app">
+      <div class="app-name">Todo-like</div>
+      <div class="app-name">
+        <input type="text" name="filter" id="filter" placeholder="Filter">
+      </div>
+      <ul class="list"></ul>
+    </div>
+    <form>
+      <div><label for="name" required>Name</label><input name="name" type="text"></div>
+      <div><label for="surname" required>Surname</label><input name="surname" type="text"></div>
+      <div><label for="age" required>Age</label><input name="age" type="number" min="0"></div>
+      <div><button id="add-student">Submit</button></div>
+    </form>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
