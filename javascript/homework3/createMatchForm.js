@@ -2,7 +2,8 @@ import { Dom } from './DomService.js';
 
 
 
-export const createMatchForm = (data, params) => {
+export const createMatchForm = async (p, params) => {
+  const data = await p;
   const edit = !(JSON.stringify(data) === '{}');
   const $form = Dom.create('form');
 

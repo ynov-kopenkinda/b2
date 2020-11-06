@@ -36,7 +36,7 @@ export const Api = {
     getText,
   },
   getAllMatches: () => getJSON(endpoints.get()),
-  getAllMatchesDelayed: () => sleep(100).then(() => getJSON(endpoints.get())),
+  getAllMatchesDelayed: () => sleep(2000).then(() => getJSON(endpoints.get())),
   getMatchByID: id => getJSON(endpoints.get(id)),
   createMatch: match => post(endpoints.create(), match, { 'Content-Type': 'application/json' }),
   updateMatch: data => put(endpoints.update(data.id), data, { 'Content-Type': 'application/json' }),
