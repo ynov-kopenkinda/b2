@@ -18,7 +18,7 @@ const getText = url => get(url).then(data => data.text());
 
 const baseUrl = 'https://js-ingesup-b2.herokuapp.com';
 const endpoints = {
-  get: (id = '') => `${baseUrl}/matches/${id}`,
+  get: (id = '') => `${baseUrl}/matches/${id}?sort=-date`,
   create: () => `${baseUrl}/matches/`,
   update: (id) => `${baseUrl}/matches/${id}`,
   delete: (id) => `${baseUrl}/matches/${id}`,
@@ -36,15 +36,16 @@ export const Api = {
     getText,
   },
   getAllMatches: () => getJSON(endpoints.get()),
-  getAllMatchesDelayed: () => sleep(2000).then(() => getJSON(endpoints.get())),
+  getAllMatchesDelayed: () => sleep(100).then(() => getJSON(endpoints.get())),
   getMatchByID: id => getJSON(endpoints.get(id)),
   createMatch: match => post(endpoints.create(), match, { 'Content-Type': 'application/json' }),
-  updateMatch: (id, data) => put(endpoints.update(id), data, { 'Content-Type': 'application/json' }),
+  updateMatch: data => put(endpoints.update(data.id), data, { 'Content-Type': 'application/json' }),
   deleteMatch: id => del(endpoints.delete(id)),
   createRandomMatch: () => post(endpoints.create(), {
     date: new Date(),
     homeTeam: 'Manchester City',
     score: [3, 1],
     visitorTeam: 'Porto',
-  }, { 'Content-Type': 'application/json' })
+  }, { 'Content-Type': 'application/json' }),
+  sleep,
 };

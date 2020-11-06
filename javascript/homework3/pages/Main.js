@@ -17,7 +17,7 @@ export const Main = globalContext => {
 
       const addNew = Dom.create('button');
       Dom.listen(addNew, 'click', e => {
-        globalThis.location.hash = "#new";
+        window.location.hash = "#new";
       });
       Dom.setText(addNew, 'Add new match');
       Dom.addClass(addNew, 'add-match');
@@ -41,7 +41,7 @@ const createActions = (gc, match) => {
     e.preventDefault();
     gc.id = match.id;
     localStorage.setItem('match-id', match.id);
-    globalThis.location.hash = '#edit';
+    window.location.hash = '#edit';
   });
 
   const del = Dom.create('button');
@@ -49,18 +49,14 @@ const createActions = (gc, match) => {
   Dom.setText(del, 'Delete');
   Dom.listen(del, 'click', e => {
     e.preventDefault();
-    const sure = globalThis.confirm('Are you sure you want to delete this match?');
+    const sure = window.confirm('Are you sure you want to delete this match?');
     if (sure) {
       Api.deleteMatch(match.id)
-        .then(() => {
+        .then(async () => {
           console.log('Match deleted successfully');
-          globalThis.location.reload();
-          Api.createMatch({
-            ...match,
-            id: undefined,
-          }).then(() => console.log('Match restored successfully'));
+          await Api.sleep(1000);
+          window.location.reload();
         });
-
     }
   });
 
@@ -83,8 +79,13 @@ const Match = (match, i, ctx) => {
   Dom.addClass(homeTeam, 'home-team', 'team');
   if (typeof match.score === 'string')
     Dom.setText(score, match.score);
-  else
+  else {
+    if (match.score[0] > match.score[1])
+      Dom.addClass(homeTeam, 'winner');
+    if (match.score[0] < match.score[1])
+      Dom.addClass(visitorTeam, 'winner');
     Dom.setText(score, match.score.join(' - '));
+  }
   Dom.addClass(score, 'score');
 
   Dom.setText(visitorTeam, match.visitorTeam);

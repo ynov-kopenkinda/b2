@@ -1,4 +1,3 @@
-import { Api } from './ApiService.js';
 import { Dom } from './DomService.js';
 import { _404 } from './pages/404.js';
 import { routes } from './router.js';
@@ -14,7 +13,6 @@ export const App = root => {
     const startTime = Date.now();
     let result = null;
     for (const route of routes) {
-      console.log(route);
       if (route.paths.includes(part)) {
         result = await route.page(globalContext);
         globalContext.page = route.name;
@@ -32,7 +30,7 @@ export const App = root => {
   window.onhashchange = event => {
     event.preventDefault();
     Dom.empty(root);
-    render(globalThis.location.hash);
+    render(window.location.hash);
   };
-  render(globalThis.location.hash);
+  render(window.location.hash);
 };
