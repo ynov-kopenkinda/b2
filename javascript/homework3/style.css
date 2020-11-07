@@ -138,3 +138,38 @@ form h1 a:hover {
 form h1 a:hover::before {
   height: 100%;
 }
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pagination-separator {
+  font-weight: bold;
+  user-select: none;
+  font-size: 2rem;
+  transform: translateY(-21%);
+}
+
+.pagination-button.active {
+  background: #000000;
+  color: var(--primary);
+  cursor: not-allowed;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-item {
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.filter-item.active {
+  text-decoration: underline;
+}

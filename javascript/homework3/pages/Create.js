@@ -1,9 +1,9 @@
 import { Api } from '../ApiService.js';
-import { createMatchForm } from '../createMatchForm.js';
+import { MatchForm } from '../components/MatchForm.js';
 
 
 export const Create = async ctx => {
-  const $r = createMatchForm(
+  const $r = MatchForm(
     {},
     {
       action: Api.createMatch,

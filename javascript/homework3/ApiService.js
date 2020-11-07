@@ -22,6 +22,8 @@ const endpoints = {
   create: () => `${baseUrl}/matches/`,
   update: (id) => `${baseUrl}/matches/${id}`,
   delete: (id) => `${baseUrl}/matches/${id}`,
+  getFiltered: ({ filters, page }) =>
+    `${baseUrl}/matches/?sort=${filters.sortBy}&page=${page.current}&size=${filters.pageSize}`,
 };
 
 export const Api = {
@@ -36,6 +38,8 @@ export const Api = {
     getText,
   },
   getAllMatches: () => getJSON(endpoints.get()),
+  getAllMatchesRaw: () => get(endpoints.get()),
+  getAllMatchesRawDelayed: () => () => sleep(2000).then(() => get(endpoints.get())),
   getAllMatchesDelayed: () => sleep(2000).then(() => getJSON(endpoints.get())),
   getMatchByID: id => getJSON(endpoints.get(id)),
   createMatch: match => post(endpoints.create(), match, { 'Content-Type': 'application/json' }),
@@ -48,4 +52,6 @@ export const Api = {
     visitorTeam: 'Porto',
   }, { 'Content-Type': 'application/json' }),
   sleep,
+  getRawMatches: ctx => get(endpoints.getFiltered({ filters: ctx.filters, page: ctx.page })),
+  getRawMatchesDelayed: (ctx, n) => sleep(n).then(() => get(endpoints.getFiltered({ filters: ctx.filters, page: ctx.page }))),
 };
