@@ -9,7 +9,7 @@ export const Edit = async ctx => {
   const $r = Dom.create('div');
   Dom.dangerouslySetHTML(
     $r,
-    '<img src="/assets/loader.gif" alt="loading" title="loading" loading="lazy" class="loader">'
+    '<div class="loader"></div>'
   );
   MatchForm(
     Api.getMatchByID(ctx.id),

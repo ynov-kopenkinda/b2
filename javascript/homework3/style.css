@@ -21,6 +21,20 @@ body {
   min-height: 100vh;
 }
 
+.loader {
+  border: 1.5rem solid var(--shadow);
+  border-top: 1.5rem solid var(--shadow-2);
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  animation: spin 1.33s ease-in-out infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .matches-container {
   margin: 2rem 0;
   padding: 2rem;

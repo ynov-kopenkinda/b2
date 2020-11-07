@@ -73,7 +73,7 @@ export const Main = ctx => {
   Dom.addClass($r, 'matches-container');
   Dom.dangerouslySetHTML(
     $r,
-    '<img src="/assets/loader.gif" alt="loading" title="loading" loading="lazy" class="loader">'
+    '<div class="loader"></div>'
   );
   return $r;
 };
