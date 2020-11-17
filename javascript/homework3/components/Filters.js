@@ -21,8 +21,10 @@ export const Filters = ctx => {
     ctx.setFilters,
     'sortBy',
     [
-      ['Date 🠕', '-date'],
-      ['Date 🠗', 'date'],
+      ['Date ⬆', '-date'],
+      ['Date ⬇', 'date'],
+      ['Team #1', 'homeTeam'],
+      ['Team #2', 'visitorTeam'],
     ],
     ctx.filters.sortBy
   ), $r);

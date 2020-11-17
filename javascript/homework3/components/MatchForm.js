@@ -8,7 +8,7 @@ export const MatchForm = async (p, params) => {
   const h1 = Dom.create('h1');
   Dom.dangerouslySetHTML(
     h1,
-    `<h1><a href="#">🠔</a> ${params.text}</h1>`
+    `<h1><a href="#">⬅</a> ${params.text}</h1>`
   );
 
   const homeTeam = Dom.create('input');

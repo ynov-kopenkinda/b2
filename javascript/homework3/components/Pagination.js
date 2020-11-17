@@ -25,7 +25,7 @@ export const Pagination = ctx => {
   if (needLeftArrow) {
     Dom.wrap(
       Dom.listen(
-        Dom.addClass(Dom.setText(Dom.create('button'), '🠔'), 'btn', 'pagination-button'),
+        Dom.addClass(Dom.setText(Dom.create('button'), '⬅'), 'btn', 'pagination-button'),
         'click',
         (e) => {
           if (current > start) {
@@ -59,7 +59,7 @@ export const Pagination = ctx => {
   if (needRightArrow) {
     Dom.wrap(
       Dom.listen(
-        Dom.addClass(Dom.setText(Dom.create('button'), '🠖'), 'btn', 'pagination-button'),
+        Dom.addClass(Dom.setText(Dom.create('button'), '➡'), 'btn', 'pagination-button'),
         'click',
         (e) => {
           if (current < end) {
