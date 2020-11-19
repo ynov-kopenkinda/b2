@@ -1,0 +1,5 @@
+
+m
+java:S1206"PThis class overrides "equals()" and should therefore also override "hashCode()".(ç‹—„8∂òºì‘.
+W
+java:S1161":Add the "@Override" annotation above this method signature(¡ªõÍ8∂òºì‘.
