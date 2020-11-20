@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class pparConcessionService {
+public class ConcessionService {
     private final VehicleRepository vehicleRepository;
 
     public ConcessionService(VehicleRepository vehicleRepository) {
