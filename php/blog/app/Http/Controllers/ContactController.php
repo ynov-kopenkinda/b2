@@ -2,20 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
-    public static $storage = [
-        [
-            'name' => 'John',
-            'phone' => '+7 (963) 034 57-85'
-        ],
-        [
-            'name' => 'Jane',
-            'phone' => '+7 (922) 034 09-83'
-        ],
-    ];
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +15,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('contacts/index', ['storage' => self::$storage]);
+        $storage = Contact::all();
+        return view('contacts/index', ['storage' => $storage]);
     }
 
     /**
@@ -44,30 +37,37 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $name = $request->input('name');
+        $firstname = $request->input('firstname');
+        $lastname = $request->input('lastname');
         $phone = $request->input('phone');
-        if ($name != '' || $phone != '') {
-            array_push(self::$storage, [
-                'name' => $name,
-                'phone' => $phone,
-            ]);
-            return view(
-                'contacts/index',
-                [
-                    'success' => true, 
-                    'message' => 'Nice job',
-                    'storage' => self::$storage,
-                ],
-            );
-        }
-        return view(
-            'contacts/index',
-            [
+        $email = $request->input('email');
+        $comments = $request->input('comments', '');
+
+        if (
+            $firstname != '' &&
+            $lastname != '' &&
+            $phone != '' &&
+            $email != ''
+        ) {
+            $contact = new Contact;
+            $contact->firstname = $firstname;
+            $contact->lastname = $lastname;
+            $contact->phone = $phone;
+            $contact->email = $email;
+            $contact->comments = $comments;
+            $contact->save();
+            return view('contacts.index', [
+                'success' => true,
+                'message' => 'Nice job',
+                'storage' => Contact::all(),
+            ],);
+        } else {
+            return view('contacts.index', [
                 'error' => true,
                 'message' => "Please fill all the fields",
-                'storage' => self::$storage,
-            ],
-        );
+                'storage' => Contact::all(),
+            ],);
+        }
     }
 
     /**
@@ -78,7 +78,8 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        return 'Show';
+        $contact = Contact::find($id);
+        return view('contacts.show', $contact);
     }
 
     /**
@@ -89,7 +90,8 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        return 'Edit';
+        $contact = Contact::find($id);
+        return view('contacts.edit', ['contact' => $contact]);
     }
 
     /**
@@ -101,7 +103,12 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return 'Update';
+        // return 'Update';
+        return redirect()->route('contacts.index', [
+            'error' => true,
+            'message' => "Please fill all the fields",
+            'storage' => Contact::all(),
+        ],);
     }
 
     /**

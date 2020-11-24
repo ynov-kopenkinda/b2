@@ -7,23 +7,33 @@ Create Contact
 
 @section('content')
 
-<form class="card" method="POST" action="{{route('contacts.store')}}">
+<form class="card" method="post" action="{{route('contacts.store')}}">
   @csrf
+  @method('POST')
   <div class="card-header">
     <h3>🗒 Create contact</h3>
   </div>
   <div class="card-body">
-    <div class="form-group">
-      <label for="name-input">First name</label>
-      <input type="text" class="form-control" name="name" id="name-input" aria-describedby="name-input_help">
-      <small id="name-input_help" class="form-text text-muted">Your name</small>
+    <div class="form-group row">
+      <label class="col-3 col-form-label">First Name</label>
+      <div class="col-9"><input type="text" class="form-control" name="firstname"></div>
+    </div>
+    <div class="form-group row">
+      <label class="col-3 col-form-label">Last Name</label>
+      <div class="col-9"><input type="text" class="form-control" name="lastname"></div>
+    </div>
+    <div class="form-group row">
+      <label class="col-3 col-form-label">Phone number</label>
+      <div class="col-9"><input type="text" class="form-control" name="phone"></div>
+    </div>
+    <div class="form-group row">
+      <label class="col-3 col-form-label">E-mail</label>
+      <div class="col-9"><input type="email" class="form-control" name="email"></div>
     </div>
     <div class="form-group">
-      <label for="phone-input">Phone mumber</label>
-      <input type="text" class="form-control" name="phone" id="phone-input" aria-describedby="phone-input_help">
-      <small id="phone-input_help" class="form-text text-muted">Your phone: Ex 7 (XXX) XXX XX-XX</small>
+      <label class="form-label">Comments *</label>
+      <textarea name="comments" class="form-control"></textarea>
     </div>
-    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
     <button type="submit" class="btn btn-primary">Submit</button>
   </div>
 </form>
