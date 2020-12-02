@@ -33,14 +33,14 @@ config rule
 ```
 - We've restarted the Firewall by running `/etc/init.d/firewall restart`
 - We've installed `openssh-server` package on our router (aka `Le*Router`) by running:
-```bash
+```shell
 $ opkg update                 # Fetch all available packages
 $ opkg install openssh-server # Install openssh-server
 ```
 - We've modified `/etc/ssh/sshd_config` by changing the port
 - We've modified the password of root on OPENWRT Machine with SPACE
-```bash
-passwd root
+```shell
+$ passwd root
 ```
 
 - We've generated a new SSH KEYPAIR with ED25519 format.
@@ -54,22 +54,23 @@ passwd root
 - A Ed25519 public-key is compact, only contains 68 characters, compared to RSA 3072 that has 544 characters. Generating the key is also almost as fast as the signing process. It’s fast to perform batch signature verification with Ed25519 and built to be collision resilience.
 
 ## Stage 3
-- We've installed luci
-```bash
+- We've installed `luci` by running on our OpenWRT machine
+```shell
 $ opkg install luci
 ```
-- We've configured `/etc/ssh/sshd_config` to allow connection on root user
+- We've modified SSH server config (`/etc/ssh/sshd_config`) by adding following lines to the end of the file:
+```sshd_config
+PermitRootLogin yes # Grant access to the SSH server as an user from `root` group
+Port 922            # Open the ssh sever on port 922
+```
 
-
-![Connection Diagram](./images/stage3.01.png)
-
-- We've created a tunnel from Openwrt machine port 80 to hostmachine port 988 by writing 
-```bash
-sudo ssh -L 988:127.0.0.1:80 root@192.168.122.251 -p 922
+- We've setup port forwarding from port 80 on our OpenWRT machine to port 988 on our host machine with SSH by running
+```shell
+$ sudo ssh -L 988:127.0.0.1:80 root@192.168.122.251 -p 922
 ```
 - We've used ssh tunnel but we can also change the firewall of OpenWrt 
 
-- We've managed to have acess to LuCi on our host machine with SSH Tunnel 
+- We've managed to have access to LuCi on our host machine with SSH Tunnel 
 
 ![Connection Diagram](./images/stage3.02.png)
 
@@ -133,9 +134,9 @@ wget -O <filename> <url>
 
 ## Stage 7
 
-- We've created two subnet : subnet 1 on 10.9.1.0/16 subnet 2 on 10.9.2.0/16. Then we have added Alpin Linux and connect it to the switch in DHCP to acess internert 
+- We've created two subnet : subnet 1 on `10.9.1.0/16` subnet 2 on `10.9.2.0/16`. Then we have added Alpine Linux and connect it to the switch in DHCP to access internet 
 
-- Then we have intsalled curl on alpin linux and changed it network configuration to be static on the first subnet 
+- Then we've installed curl on Alpine linux and changed it network configuration to be static on the first subnet 
 ![Connection Diagram](./images/stage7.01.png)
 
 -Then we have donwloaded the file
