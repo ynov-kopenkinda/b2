@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,9 @@ Route::get('/', function () {
 });
 
 Route::resource('restaurants', 'RestaurantController');
+
+Route::get('/sendmail', [ContactController::class, 'create'])
+    ->name('sendmail');
+    
+Route::post('/sendmail', [ContactController::class, 'store'])
+    ->name('storemail');

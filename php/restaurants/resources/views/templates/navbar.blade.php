@@ -15,7 +15,8 @@
     </li>
   </ul>
 
-  <form class="form-inline d-flex ml-auto" action="{{route('restaurants.index')}}">
+  <a class="ml-auto mr-2 btn" href="{{ route('sendmail') }}">💌</a>
+  <form class="form-inline d-flex" action="{{route('restaurants.index')}}">
     <input type="text" class="form-control" name="search" placeholder="Search Restaurants...">
     <button class="btn btn-primary" type="submit">Find</button>
   </form>
