@@ -12,7 +12,7 @@
         font-family: "Press Start 2P";
     }
     .container {
-      margin: 0 16rem;
+      margin: 0 8rem;
       padding: 2rem;
       min-height: 100vh;
     }

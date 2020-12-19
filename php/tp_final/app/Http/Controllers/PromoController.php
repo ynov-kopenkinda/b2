@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Module;
 use App\Promo;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class PromoController extends Controller
      */
     public function create()
     {
-        return view('promo.create');
+        $modules = Module::all();
+        return view('promo.create', ['modules' => $modules]);
     }
 
     /**
@@ -36,11 +38,14 @@ class PromoController extends Controller
      */
     public function store(Request $request)
     {
+        // var_dump( $request->all());
+        // exit(0);
         $promo = new Promo();
         $promo->name = $request->input('name');
         $promo->specialty = $request->input('specialty');
         $promo->save();
-        return redirect()->route('promos.index');
+        $promo->modules()->attach($request->input('modules'));
+        return redirect()->route('promos.index', ['promo' => $promo]);
     }
 
     /**
@@ -62,7 +67,8 @@ class PromoController extends Controller
      */
     public function edit(Promo $promo)
     {
-        return view('promo.edit', ['promo' => $promo]);
+        $modules = Module::all();
+        return view('promo.edit', ['promo' => $promo, 'modules' => $modules]);
     }
 
     /**
@@ -80,12 +86,12 @@ class PromoController extends Controller
         // $promo->eleves()->detach();
         // $promo->eleves()->attach($request->input("eleves") ?? '');
 
-        // $promo->modules()->detach();
-        // $promo->modules()->attach($request->input("modules") ?? '');
+        $promo->modules()->detach();
+        $promo->modules()->attach($request->input("modules"));
 
         $promo->save();
 
-        return redirect()->route('promos.index');
+        return redirect()->route('promos.index', ['promo' => $promo]);
     }
 
     /**
@@ -96,6 +102,7 @@ class PromoController extends Controller
      */
     public function destroy(Promo $promo)
     {
+        $promo->modules()->detach();
         $promo->delete();
         return redirect()->route("promos.index");
     }

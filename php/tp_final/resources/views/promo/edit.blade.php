@@ -16,10 +16,28 @@ Edit Promo
   <label for="specialty">Promo specialty</label>
   <input type="text" id="specialty" name="specialty" class="nes-input" required value="{{ $promo->specialty}}">
 </div>
+  
+@if ($modules ?? false)
+<div class="nes-field mt-2">
+  <h4>Modules</h4>
+  @foreach($modules as $module)
+      <label>
+        <input 
+        @foreach($promo->modules as $pm)
+          @if($pm->id == $module->id) checked @endif
+        @endforeach
+
+        type="checkbox" class="nes-checkbox" id="module-{{ $module->id }}" value="{{ $module->id }}" name="modules[]"/>
+        <span>{{ $module->name }}</span>
+      </label>
+  @endforeach
+</div>
+@endif
+
+
 <div class="nes-field mt-2">
   <button type="submit" class="nes-btn is-success">Update</button>
 </div>
-  
 
 </form>
 @endsection

@@ -16,8 +16,8 @@ class Module extends Model
     // {
     //     return $this->hasMany(Eleve::class);
     // }
-    // public function promos(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(Promo::class);
-    // }
+    public function promos(): BelongsToMany
+    {
+        return $this->belongsToMany(Promo::class);
+    }
 }

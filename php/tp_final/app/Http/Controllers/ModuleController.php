@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Module;
+use App\Promo;
 use Illuminate\Http\Request;
 
 class ModuleController extends Controller
@@ -14,7 +15,8 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        //
+        $modules = Module::all();
+        return view('module.index', ['modules' => $modules]);
     }
 
     /**
@@ -24,7 +26,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        //
+        return view('module.create', ['promos' => Promo::all()]);
     }
 
     /**
@@ -35,7 +37,11 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $module = new Module();
+        $module->name = $request->input('name');
+        $module->description = $request->input('description');
+        $module->promos()->attach($request->input('promos'));
+        return redirect()->route('modules.index', ['module' => $module]);
     }
 
     /**
@@ -46,7 +52,7 @@ class ModuleController extends Controller
      */
     public function show(Module $module)
     {
-        //
+        return view('module.show', ['module' => $module]);
     }
 
     /**
@@ -57,7 +63,7 @@ class ModuleController extends Controller
      */
     public function edit(Module $module)
     {
-        //
+        return view('module.edit', ['module' => $module, 'promos' => Promo::all()]);
     }
 
     /**
@@ -69,7 +75,11 @@ class ModuleController extends Controller
      */
     public function update(Request $request, Module $module)
     {
-        //
+        $module->name = $request->input('name');
+        $module->description = $request->input('description');
+        $module->promos()->detach();
+        $module->promos()->attach($request->input('promos'));
+        return redirect()->route('modules.show', ['module' => $module]);
     }
 
     /**
@@ -80,6 +90,8 @@ class ModuleController extends Controller
      */
     public function destroy(Module $module)
     {
-        //
+        $module->promos()->detach();
+        $module->delete();
+        return redirect()->route('modules.index');
     }
 }

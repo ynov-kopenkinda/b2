@@ -6,7 +6,17 @@
     </h1>
   </a>
   <nav style="margin-left: auto;">
-    <a href="{{ route('promos.index') }}">Show Promos</a>
-    <a class="nes-btn" href="{{ route('promos.create') }}">Add Promo</a>
+    <div style="display: inline-flex; flex-direction:column;">
+      <a href="{{ route('promos.index') }}">Show Promos</a>
+      <a class="nes-btn" href="{{ route('promos.create') }}">Add Promo</a>
+    </div>
+    <div style="display: inline-flex; flex-direction:column;">
+      <a href="{{ route('modules.index') }}">Show Modules</a>
+      <a class="nes-btn" href="{{ route('modules.create') }}">Add Module</a>
+    </div>
+    <div style="display: inline-flex; flex-direction:column;">
+      <a href="#">Show Eleves</a>
+      <a class="nes-btn" href="#">Add Eleve</a>
+    </div>
   </nav>
 </div>
