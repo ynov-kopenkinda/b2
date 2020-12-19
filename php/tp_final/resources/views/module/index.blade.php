@@ -1,6 +1,6 @@
 @extends('base')
 @section('page-title')
-All Promos
+All Modules
 @endsection
 
 @section('page-content')

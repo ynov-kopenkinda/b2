@@ -18,8 +18,11 @@ Module {{ $module->name }}
     <div>
       <div class="nes-balloon from-left"><p>Module name: {{ $module->name }}</p></div>
       <br>
-      <div class="nes-balloon from-left"><p>Module description:</p>
-      <p> {{ $module->description }}</p></div>
+      <div class="nes-balloon from-left">
+        <p>Module description:</p>
+        <p>{{ $module->description }}</p>
+      </div>
+      <br>
       <div class="nes-balloon from-left">
         <p>In Promos:</p>
         <ul>
@@ -29,7 +32,18 @@ Module {{ $module->name }}
               <li>none</li>
           @endforelse
         </ul>
-    </div>
+      </div>
+      <br>
+      <div class="nes-balloon from-left">
+        <p>Attendees:</p>
+        <ul>
+          @forelse ($module->students ?? [] as $student)
+              <li><a href="{{ route('students.show', ['student' => $student]) }}">{{ $student->name }} {{ $student->surname }} ({{ $student->email }})</a></li>
+          @empty
+              <li>None</li>
+          @endforelse
+        </ul>
+      </div>
     </div>
   </section>
 </section>

@@ -30,6 +30,17 @@
           @endforelse
         </ul>
       </div>
+      <br>
+      <div class="nes-balloon from-left">
+        <p>Students:</p>
+        <ul>
+          @forelse ($promo->students ?? [] as $student)
+              <li><a href="{{ route('students.show', ['student' => $student]) }}">{{ $student->name }}</a></li>
+          @empty
+              <li>none</li>
+          @endforelse
+        </ul>
+      </div>
     </div>
   </section>
 </section>

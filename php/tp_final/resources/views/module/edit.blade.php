@@ -18,7 +18,7 @@ Edit Module
 </div>
 
 
-@if ($promos ?? false)
+@if (sizeof($promos ?? []) > 0)
 <div class="nes-field mt-2">
   <h4>Promos</h4>
   @foreach($promos as $promo)
@@ -29,6 +29,23 @@ Edit Module
         @endforeach
         type="checkbox" class="nes-checkbox" id="promo-{{ $promo->id }}" value="{{ $promo->id }}" name="promos[]"/>
         <span>{{ $promo->name }} - {{ $promo->specialty }}</span>
+      </label>
+  @endforeach
+</div>
+@endif
+
+
+@if (sizeof($students ?? []) > 0)
+<div class="nes-field mt-2">
+  <h4>Students:</h4>
+  @foreach($students as $student)
+      <label>
+        <input 
+        @foreach($module->students as $ms)
+          @if($ms->id == $student->id) checked @endif
+        @endforeach
+        type="checkbox" class="nes-checkbox" id="student-{{ $student->id }}" value="{{ $student->id }}" name="students[]"/>
+        <span>{{ $student->name }} {{ $student->surname }} ({{ $student->email }})</span>
       </label>
   @endforeach
 </div>

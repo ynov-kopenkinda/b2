@@ -15,8 +15,8 @@
       <a class="nes-btn" href="{{ route('modules.create') }}">Add Module</a>
     </div>
     <div style="display: inline-flex; flex-direction:column;">
-      <a href="#">Show Eleves</a>
-      <a class="nes-btn" href="#">Add Eleve</a>
+      <a href="{{ route('students.index') }}">Show Students</a>
+      <a class="nes-btn" href="{{ route('students.create') }}">Add Student</a>
     </div>
   </nav>
 </div>

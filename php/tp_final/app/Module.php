@@ -12,10 +12,11 @@ class Module extends Model
         'description',
     ];
 
-    // public function eleves()
-    // {
-    //     return $this->hasMany(Eleve::class);
-    // }
+    public function students(): BelongsToMany
+    {
+        return $this->belongsToMany(Student::class);
+    }
+
     public function promos(): BelongsToMany
     {
         return $this->belongsToMany(Promo::class);

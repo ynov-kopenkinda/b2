@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateElevesTable extends Migration
+class AddPivotTableBetweenModuleAndStudent extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateElevesTable extends Migration
      */
     public function up()
     {
-        Schema::create('eleves', function (Blueprint $table) {
+        Schema::create('module_student', function (Blueprint $table) {
             $table->id();
-            
-            $table->integer('promo_id');
-
-            $table->string('name');
-            $table->string('surname');
-            $table->string('email');
+            $table->integer("module_id");
+            $table->integer("student_id");
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateElevesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('eleves');
+        Schema::dropIfExists('module_student');
     }
 }

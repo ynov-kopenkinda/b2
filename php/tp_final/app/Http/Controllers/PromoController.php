@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Module;
 use App\Promo;
+use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PromoController extends Controller
 {
@@ -27,7 +29,8 @@ class PromoController extends Controller
     public function create()
     {
         $modules = Module::all();
-        return view('promo.create', ['modules' => $modules]);
+        $students = Student::all();
+        return view('promo.create', ['modules' => $modules, 'students' => $students]);
     }
 
     /**
@@ -42,6 +45,12 @@ class PromoController extends Controller
         $promo->name = $request->input('name');
         $promo->specialty = $request->input('specialty');
         $promo->save();
+        $students = $request->input('students');
+        foreach ($students ?? [] as $student_id) {
+            $student = Student::find($student_id);
+            $student->promo_id = $promo->id;
+            $student->save();
+        }
         $promo->modules()->attach($request->input('modules'));
         return redirect()->route('promos.index', ['promo' => $promo]);
     }
@@ -100,8 +109,11 @@ class PromoController extends Controller
      */
     public function destroy(Promo $promo)
     {
-        $promo->modules()->detach();
-        $promo->delete();
-        return redirect()->route("promos.index");
+        if (sizeof($promo->students) == 0) {
+            $promo->modules()->detach();
+            $promo->delete();
+            return redirect()->route("promos.index");
+        }
+        return view('promo.error', ['promo' => $promo]);
     }
 }

@@ -3,19 +3,23 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Promo extends Model
+class Student extends Model
 {
     protected $fillable = [
         'name',
-        'specialty',
+        'suranme',
+        'email',
+        'promo_id',
     ];
-    public function students(): HasMany
+
+    public function promo(): BelongsTo
     {
-        return $this->hasMany(Student::class);
+        return $this->belongsTo(Promo::class);
     }
+
     public function modules(): BelongsToMany
     {
         return $this->belongsToMany(Module::class);

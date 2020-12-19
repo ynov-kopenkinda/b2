@@ -29,6 +29,19 @@ Edit Module
 </div>
 @endif
 
+
+@if (sizeof($students ?? []) > 0)
+<div class="nes-field mt-2">
+  <h4>Students:</h4>
+  @foreach($students as $student)
+      <label>
+        <input type="checkbox" class="nes-checkbox" id="student-{{ $student->id }}" value="{{ $student->id }}" name="students[]"/>
+        <span>{{ $student->name }} {{ $student->surname }} ({{ $student->email }})</span>
+      </label>
+  @endforeach
+</div>
+@endif
+
 <div class="nes-field mt-2">
   <button type="submit" class="nes-btn is-success">Create</button>
 </div>

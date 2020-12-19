@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Module;
 use App\Promo;
+use App\Student;
 use Illuminate\Http\Request;
 
 class ModuleController extends Controller
@@ -26,7 +27,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        return view('module.create', ['promos' => Promo::all()]);
+        return view('module.create', ['promos' => Promo::all(), 'students' => Student::all(), 'modules' => Module::all()]);
     }
 
     /**
@@ -40,7 +41,9 @@ class ModuleController extends Controller
         $module = new Module();
         $module->name = $request->input('name');
         $module->description = $request->input('description');
+        $module->save();
         $module->promos()->attach($request->input('promos'));
+        $module->students()->attach($request->input('students'));
         return redirect()->route('modules.index', ['module' => $module]);
     }
 
@@ -63,7 +66,7 @@ class ModuleController extends Controller
      */
     public function edit(Module $module)
     {
-        return view('module.edit', ['module' => $module, 'promos' => Promo::all()]);
+        return view('module.edit', ['module' => $module, 'promos' => Promo::all(), 'students' => Student::all()]);
     }
 
     /**
@@ -79,6 +82,9 @@ class ModuleController extends Controller
         $module->description = $request->input('description');
         $module->promos()->detach();
         $module->promos()->attach($request->input('promos'));
+        $module->students()->detach();
+        $module->students()->attach($request->input('students'));
+        $module->save();
         return redirect()->route('modules.show', ['module' => $module]);
     }
 
@@ -91,6 +97,7 @@ class ModuleController extends Controller
     public function destroy(Module $module)
     {
         $module->promos()->detach();
+        $module->students()->detach();
         $module->delete();
         return redirect()->route('modules.index');
     }

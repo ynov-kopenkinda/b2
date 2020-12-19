@@ -18,5 +18,5 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::resource('promos', 'PromoController');
-Route::resource('eleves', 'EleveController');
 Route::resource('modules', 'ModuleController');
+Route::resource('students', 'StudentController');
