@@ -4,6 +4,17 @@ All Promos
 @endsection
 
 @section('page-content')
+<form action="{{ route('promos.index') }}">
+
+<div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
+  <label for="dark_field" style="color:#fff;">Search</label>
+  <input type="text" id="dark_field" name="search" class="nes-input is-dark" placeholder="Search by name">
+  <button class="nes-btn">find</button>
+</div>
+
+
+</form>
+
 @forelse ($promos ?? '' as $promo)
 <div class="nes-container is-rounded mt-2">
 

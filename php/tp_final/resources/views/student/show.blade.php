@@ -19,6 +19,7 @@
       <div class="nes-balloon from-left">
         <p>Name: {{ $student->name }}</p>
         <p>Surname: {{ $student->surname }}</p>
+        <p>Surname: {{ $student->email }}</p>
       </div>
       <br>
       <div class="nes-balloon from-left">

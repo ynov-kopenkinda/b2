@@ -15,9 +15,17 @@ class PromoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $promos = Promo::all();
+
+        $search = $request->input('search') ?? '';
+
+        if ($search != '') {
+            $promos = Promo::where('name', 'like', '%' . $search . '%')->get();
+        } else {
+            $promos = Promo::all();
+        }
+
         return view('promo.index', ['promos' => $promos]);
     }
 
@@ -41,6 +49,7 @@ class PromoController extends Controller
      */
     public function store(Request $request)
     {
+
         $promo = new Promo();
         $promo->name = $request->input('name');
         $promo->specialty = $request->input('specialty');

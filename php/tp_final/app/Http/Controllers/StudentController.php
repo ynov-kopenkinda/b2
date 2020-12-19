@@ -14,9 +14,20 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('student.index', ['students' => Student::all()]);
+        $search = $request->input('search') ?? '';
+
+        if ($search != '') {
+            $students = Student::where('name', 'like', '%' . $search . '%')
+            ->orWhere('surname', 'like', '%' . $search . '%')
+            ->orWhere('email', 'like', '%' . $search . '%')
+            ->get();
+        } else {
+            $students = Student::all();
+        }
+
+        return view('student.index', ['students' => $students]);
     }
 
     /**

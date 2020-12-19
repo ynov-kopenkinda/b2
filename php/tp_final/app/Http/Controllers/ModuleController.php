@@ -14,9 +14,18 @@ class ModuleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $modules = Module::all();
+
+
+        $search = $request->input('search') ?? '';
+
+        if ($search != '') {
+            $modules = Module::where('name', 'like', '%' . $search . '%')->get();
+        } else {
+            $modules = Module::all();
+        }
+
         return view('module.index', ['modules' => $modules]);
     }
 
