@@ -21,5 +21,6 @@ All Promos
 </div>
 @empty
     <h1>No promos found</h1>
+    <a href="{{ route('promos.create') }}" class="nes-btn is-success">Create one</a>
 @endforelse
 @endsection
