@@ -10,7 +10,9 @@ All Promos
   <span style="font-size: 1.5rem;">[{{ $promo->name }}]</span>
   <span>{{ $promo->specialty }}</span>
   <p>
-    <form action="{{ route('promos.destroy', ['promo' => $promo]) }}">
+    <form action="{{ route('promos.destroy', ['promo' => $promo]) }}" method="POST">
+      @csrf
+      @method('DELETE')
       <a class="nes-btn" href="{{ route('promos.show', ['promo' => $promo]) }}">Details</a>
       <a class="nes-btn is-success" href="{{ route('promos.edit', ['promo' => $promo]) }}">Edit</a>
       <button class="nes-btn is-error">Delete</button>

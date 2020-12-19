@@ -40,7 +40,7 @@ class PromoController extends Controller
         $promo->name = $request->input('name');
         $promo->specialty = $request->input('specialty');
         $promo->save();
-        return redirect()->route('promo.index');
+        return redirect()->route('promos.index');
     }
 
     /**
@@ -85,7 +85,7 @@ class PromoController extends Controller
 
         $promo->save();
 
-        return redirect()->route('promo.index');
+        return redirect()->route('promos.index');
     }
 
     /**
@@ -97,6 +97,6 @@ class PromoController extends Controller
     public function destroy(Promo $promo)
     {
         $promo->delete();
-        return redirect()->route("promo.index");
+        return redirect()->route("promos.index");
     }
 }
