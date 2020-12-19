@@ -38,8 +38,6 @@ class PromoController extends Controller
      */
     public function store(Request $request)
     {
-        // var_dump( $request->all());
-        // exit(0);
         $promo = new Promo();
         $promo->name = $request->input('name');
         $promo->specialty = $request->input('specialty');

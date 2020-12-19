@@ -1,5 +1,5 @@
 <div class="nes-container" style="display: flex;align-items:center;">
-  <a href="{{ route('promos.index') }}" style="display: flex;align-items:center;">
+  <a href="{{ route('welcome') }}" style="display: flex;align-items:center;">
     <i class="nes-icon coin is-large"></i>
     <h1 style="margin-left: 1rem;color: black;">
       [H]Admin
