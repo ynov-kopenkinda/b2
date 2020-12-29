@@ -1,0 +1,10 @@
+2020-11-27 12:26:49.889  INFO 7336 --- [main] com.ynov.demo.DemoApplication            : Starting DemoApplication on BLPP-4941 with PID 7336 (D:\ynov3\POO\demo-tu\demo\target\classes started by Reshad.KHOYRATTY in D:\ynov3\POO\demo-tu\demo)
+2020-11-27 12:26:49.896 DEBUG 7336 --- [main] com.ynov.demo.DemoApplication            : Running with Spring Boot v2.3.5.RELEASE, Spring v5.2.10.RELEASE
+2020-11-27 12:26:49.897  INFO 7336 --- [main] com.ynov.demo.DemoApplication            : No active profile set, falling back to default profiles: default
+2020-11-27 12:26:56.021  INFO 7336 --- [main] com.ynov.demo.DemoApplication            : Started DemoApplication in 7.546 seconds (JVM running for 9.884)
+2020-11-27 12:27:13.933 DEBUG 7336 --- [http-nio-8080-exec-1] c.y.d.c.service.ConcessionService        : Save done.
+2020-11-27 12:27:13.934  WARN 7336 --- [http-nio-8080-exec-1] c.y.d.c.service.ConcessionService        : Save done.
+2020-11-27 12:27:23.802 DEBUG 7336 --- [http-nio-8080-exec-2] c.y.d.c.service.ConcessionService        : Save done.
+2020-11-27 12:27:23.802  WARN 7336 --- [http-nio-8080-exec-2] c.y.d.c.service.ConcessionService        : Save done.
+2020-11-27 12:27:36.765 DEBUG 7336 --- [http-nio-8080-exec-3] c.y.d.c.service.ConcessionService        : Save done.
+2020-11-27 12:27:36.765  WARN 7336 --- [http-nio-8080-exec-3] c.y.d.c.service.ConcessionService        : Save done.
