@@ -54,7 +54,7 @@ Go to LuCi web interface, then go to `Network > Interfaces`.
 Edit Lan network and set it's ip address to `192.168.17.1`, that places your OpenWrt in `192.168.17.0` subnet.
 ![](./images/2021-01-18_10-59.png)<br>
 Then Edit it's DHCP settings as follows:
-![](images/2021-01-18_10-59_1.png)<br>
+![](./images/2021-01-18_10-59_1.png)<br>
 In order for it to give addresses from 2 -> 200 (staring address 2, 198 maximum addresses can be given). Then click `Apply > Save & Apply`.
 
 Edit Alpine m1 network config by right-clicking on it's icon and selecting option `Edit config`. Replace it's contents by
@@ -155,12 +155,8 @@ $ nc -lkp 6317 > Stream
 ```
 Now, switch the pane to the one on the right and start an udp nc server (notice that bot servers are launched on the same machine simultaneously) with the contents of our pipe passed to the server, by running:
 ```shell
-$ while true
-  do
-    nc -lup 6317 < Stream
-  done
+$ nc -lup 6317 < Stream
 ```
-We are launching the server in an infinite loop, because we want to send the new data when we receive something from our pipe, as netcat doesn't auto update automatically.
 
 Now you can connect the m1 machine to the m2 TCP server by running:
 ```shell
@@ -170,7 +166,8 @@ And connect the m4 machine to the m2 UDP server by running:
 ```shell
 $ nc 192.168.122.51 6317
 ```
-you will also need to send a message from your m4 machine in order to successfully initiate the handshake. Now, you should be able to send a message from your Alpine m1 machine in TCP and see it on your Alpine m4 machine in UDP.
+you will also need to send a message from your m4 machine in order to successfully initiate the handshake. Now, you should be able to send a message from your Alpine m1 machine in TCP and see it on your Alpine m4 machine in UDP.<br>
+![](./images/2021-01-18_18-33.png)
 
 ### SSH access
 
@@ -182,4 +179,24 @@ Now, edit `/etc/ssh/sshd_config` and uncomment those lines:
 ```
 Port 22
 PermitRootLogin yes
+PubkeyAuthentication yes
+PasswordAuthentication yes
 ```
+Restart the `sshd` service (`service sshd restart`).<br>
+Also, you will need to replace the firewall rule we've defined above
+```
+option name 'Allow LuCi' -> option name 'Allow SSH'
+option dest_port '80'    -> option dest_port '22'
+```
+Then, generate a SHH key on your host machine (if you do not have one) with `ssh-keygen` (you can also specify -t ed25519).
+Copy your key to your OpenWrt machine, by doing:
+```shell
+$ ssh-copy-id root@192.168.122.51
+```
+Then replace the `yes` in the `PasswordAuthentication` to `no` and restart the `sshd` service.<br>
+Now you can connect to your openwrt machine via ssh & create a tunnel from openwrt port 80 to port 80 on the host machine, by doing:
+```
+$ ssh -L 81:127.0.0.1:80 root@192.168.122.51
+```
+You may now acces the web interface via `localhost:81`
+![](./images/2021-01-19_19-44.png)
