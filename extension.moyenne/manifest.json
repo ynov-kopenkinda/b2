@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "Calculer la moyenne",
+  "version": "0.1.0",
+  "permissions": ["*://*.ynov.com/*"],
+  "content_scripts": [{
+    "matches": ["*://*.ynov.com/*"],
+    "js": ["./index.js"]
+  }]
+}
