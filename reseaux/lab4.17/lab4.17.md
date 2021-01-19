@@ -157,7 +157,7 @@ Now, switch the pane to the one on the right and start an udp nc server (notice 
 ```shell
 $ while true
   do
-    nc -lukp 6317 < Stream
+    nc -lup 6317 < Stream
   done
 ```
 We are launching the server in an infinite loop, because we want to send the new data when we receive something from our pipe, as netcat doesn't auto update automatically.
