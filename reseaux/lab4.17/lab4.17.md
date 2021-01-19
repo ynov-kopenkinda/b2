@@ -122,7 +122,7 @@ To allow machines in LAN subnet to access LAN2, but LAN2 not have access to LAN 
 Create a rule like the one shown on the image below:
 ![](./images/2021-01-18_13-21.png)
 
-To allow the connection between wan on port 7717 and m3 on port 6317 we need to configure a port forward. To do this, go to `Network > Interfaces > Port Forwards` and create a rule as follows:
+To allow the connection between wan on port 7717 and m3 on port 6317 we need to configure a port forward. To do this, go to `Network > Firewall > Port Forwards` and create a rule as follows:
 ![](./images/2021-01-18_13-24.png)
 We can test that the connection works by creating a new NAT2 and a new Alpine linux machine named m4, setting it's network configuration to: 
 ```
@@ -155,8 +155,12 @@ $ nc -lkp 6317 > Stream
 ```
 Now, switch the pane to the one on the right and start an udp nc server (notice that bot servers are launched on the same machine simultaneously) with the contents of our pipe passed to the server, by running:
 ```shell
-$ nc -lukp 6317 < Stream
+$ while true
+  do
+    nc -lukp 6317 < Stream
+  done
 ```
+We are launching the server in an infinite loop, because we want to send the new data when we receive something from our pipe, as netcat doesn't auto update automatically.
 
 Now you can connect the m1 machine to the m2 TCP server by running:
 ```shell
