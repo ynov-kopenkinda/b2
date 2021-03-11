@@ -3,4 +3,6 @@ poo.architecture-logiciel.projet-perso/
 tourlousain/
 ymatch/
 b2.projet-web/
+b2.web/
 *.zip
+cpp/build-*
