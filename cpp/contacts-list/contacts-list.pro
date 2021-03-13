@@ -10,13 +10,11 @@ CONFIG += c++11
 
 SOURCES += \
     contact.cpp \
-    contactlist.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     contact.h \
-    contactlist.h \
     mainwindow.h
 
 FORMS += \
