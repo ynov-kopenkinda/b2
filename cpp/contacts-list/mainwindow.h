@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -23,15 +23,25 @@ private slots:
 
     void on_ContactsList_currentRowChanged(int currentRow);
 
+    void on_SaveContactButton_clicked();
+
+    void on_SearchBox_textChanged(const QString &arg1);
+
+    void on_UpdateContactButton_clicked();
+
+    void on_AddNewButton_clicked();
+
 private:
     Ui::MainWindow *ui;
-    QVector<Contact> m_LoadedContacts;
+    QVector<Contact*> m_LoadedContacts;
     int m_SelectedContact;
+    QString m_SearchValue;
 
     void renderContactsList();
     void renderForm();
-    void insertContacts(QVector<Contact> toInsert);
+    void insertContacts(QVector<Contact*> toInsert);
     QString getFileName();
-    QVector<Contact> loadContactsFromFile(QString filename);
+    QVector<Contact*> loadContactsFromFile(QString filename);
+    void saveContactsToFile(QString filename);
 };
 #endif // MAINWINDOW_H
