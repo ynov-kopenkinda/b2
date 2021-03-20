@@ -21,6 +21,11 @@ QString Contact::Commentary() const
     return m_Commentary;
 }
 
+bool Contact::isSame(Contact *toCompare) const
+{
+    return this->Email() == toCompare->Email() || this->Phone() == toCompare->Phone();
+}
+
 Contact::Contact(QString name, QString email, QString phone, QString commentary) {
     this->m_Name = name;
     this->m_Email = email;

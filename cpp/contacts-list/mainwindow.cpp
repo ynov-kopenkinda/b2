@@ -59,7 +59,7 @@ void MainWindow::insertContacts(QVector<Contact*> toInsert)
     for(auto& contact: toInsert) {
         bool isPresent = false;
         for (auto& loadedContact: m_LoadedContacts) {
-            if (loadedContact->toString() == contact->toString()) {
+            if (loadedContact->isSame(contact)) {
                 isPresent = true;
             }
         }
