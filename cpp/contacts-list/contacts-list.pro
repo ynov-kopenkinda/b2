@@ -11,11 +11,13 @@ CONFIG += c++11
 SOURCES += \
     contact.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    notifier.cpp
 
 HEADERS += \
     contact.h \
-    mainwindow.h
+    mainwindow.h \
+    notifier.h
 
 FORMS += \
     mainwindow.ui
@@ -24,3 +26,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    README.md
