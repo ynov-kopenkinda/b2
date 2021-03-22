@@ -1,10 +1,18 @@
 #include "notifier.h"
 
+QStatusBar *Notifier::m_Statusbar = nullptr;
+
 Notifier::Notifier() {}
 Notifier::~Notifier() {}
 
-Notifier &Notifier::get()
+void Notifier::setStatusbar(QStatusBar *bar)
 {
-    static Notifier instance;
-    return instance;
+    Notifier::m_Statusbar = bar;
+}
+
+void Notifier::notify(const QString &message)
+{
+    if (Notifier::m_Statusbar !=  nullptr) {
+        Notifier::m_Statusbar->showMessage(message);
+    }
 }

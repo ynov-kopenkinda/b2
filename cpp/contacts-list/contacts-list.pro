@@ -10,12 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     contact.cpp \
+    contactslist.cpp \
+    dbmanager.cpp \
     main.cpp \
     mainwindow.cpp \
     notifier.cpp
 
 HEADERS += \
     contact.h \
+    contactslist.h \
+    dbmanager.h \
     mainwindow.h \
     notifier.h
 
