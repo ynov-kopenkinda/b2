@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  background-color: #fffbf9;
+}
+
+header {
+  height: 32px;
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.brand-logo {
+  font-weight: bold;
+  color: #fff;
+}
+
+.hamburger {
+  display: block;
+  height: 2px;
+  width: 1rem;
+  margin-left: 1rem;
+  background-color: #fff;
+  position: relative;
+}
+
+.hamburger::after,
+.hamburger::before {
+  content: "";
+  position: absolute;
+  width: 1.5rem;
+  height: 2px;
+  background-color: #fff;
+  right: 0;
+}
+
+.hamburger::after {
+  top: -0.33rem;
+}
+.hamburger::before {
+  bottom: -0.33rem;
+}
+
+.loading {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  width: 1rem;
+  height: 1rem;
+  background-color: #ccc;
+  margin: 0.5rem;
+  border-radius: 50%;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  background-color: #333;
+  color: #fff;
+}
+
+.copyright {
+  font-weight: bold;
+}
+.footer-links {
+  margin-top: 1rem;
+}
+.footer-links a {
+  text-transform: capitalize;
+  color: #fff;
+  margin: 0 0.5rem;
+}
+
+.product-buy {
+  background-color: #333;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.25rem;
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
