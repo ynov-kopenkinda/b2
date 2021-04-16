@@ -1,0 +1,70 @@
+html,
+body {
+  margin: 0.25rem auto;
+  padding: 0;
+}
+
+.box {
+  min-height: 16rem;
+}
+
+header {
+  display: flex;
+  gap: 0.5rem;
+}
+
+header > .box {
+  min-height: 8rem;
+}
+
+.logo {
+  background-color: hsl(35, 100%, 50%);
+  flex-basis: 30%;
+}
+
+.menu {
+  flex-basis: 70%;
+  background-color: hsl(50, 100%, 50%);
+}
+
+.banner {
+  background-color: hsl(88, 91%, 48%);
+  margin: 0.5rem 0;
+}
+
+main {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.content {
+  flex-basis: 100%;
+  background-color: hsl(190, 88%, 47%);
+}
+
+footer {
+  margin-top: 0.5rem;
+  background-color: hsl(290, 98%, 52%);
+}
+
+@media (min-width: 976px) {
+  body {
+    max-width: 70vw;
+  }
+}
+
+@media (max-width: 976px) {
+  body {
+    max-width: 625px;
+  }
+}
+
+@media (max-width: 625px) {
+  main {
+    flex-wrap: wrap;
+  }
+  body {
+    max-width: 100%;
+    margin: 0.25rem;
+  }
+}
