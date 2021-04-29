@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actors</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./common.css" />
+  </head>
+  <body class="d-flex flex-column">
+    <div class="container">
+      <div class="row">
+        <div class="col mt-4">
+          <h1>Colonia, Actors.</h1>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col">
+          <table class="table table-hover table-responsive-sm">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name, Surname</th>
+                <th scope="col">Role</th>
+                <th scope="col">Character's name</th>
+                <th scope="col">Twitter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th
+                  scope="row"
+                  data-toggle="popover-hover"
+                  data-img="./assets/florian.jpg"
+                >
+                  Florian Gallenberger
+                </th>
+                <td>Director</td>
+                <td></td>
+                <td>@theChef</td>
+              </tr>
+              <tr>
+                <th
+                  scope="row"
+                  data-toggle="popover-hover"
+                  data-img="./assets/emma.jpg"
+                >
+                  Emma Watson
+                </th>
+                <td>Actor</td>
+                <td>Lena</td>
+                <td>@idontknow</td>
+              </tr>
+              <tr>
+                <th
+                  scope="row"
+                  data-toggle="popover-hover"
+                  data-img="./assets/daniel.jpg"
+                >
+                  Daniel Brühl
+                </th>
+                <td>Actor</td>
+                <td>Daniel</td>
+                <td>@cremeBrühlee</td>
+              </tr>
+              <tr>
+                <th
+                  scope="row"
+                  data-toggle="popover-hover"
+                  data-img="./assets/michael.jpg"
+                >
+                  Michael Nyqvist
+                </th>
+                <td>Actor</td>
+                <td>Paul Schäfer</td>
+                <td>@wtf</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- --- -->
+
+    <footer class="bg-dark text-light py-4 mt-auto">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-4 d-flex flex-column my-2">
+            <span class="mt-auto">Copyright &copy; 2021</span>
+          </div>
+          <div class="col-12 col-md-4 d-flex flex-column my-2 d-print-none">
+            <b>External Links</b>
+            <a
+              href="https://www.imdb.com/title/tt4005402/?ref_=ttmi_tt"
+              target="_blank"
+            >
+              IMDB
+            </a>
+            <a
+              href="https://www.allocine.fr/film/fichefilm_gen_cfilm=231836.html"
+              target="_blank"
+            >
+              Allocine
+            </a>
+            <a
+              href="https://en.wikipedia.org/wiki/Colonia_(film)"
+              target="_blank"
+            >
+              Wikipedia
+            </a>
+          </div>
+          <div class="col-12 col-md-4 d-flex flex-column my-2 d-print-none">
+            <b>Navigation</b>
+            <a href="./index.html">Home</a>
+            <a href="./actors.html">Actors</a>
+            <a href="./gallery.html">Gallery</a>
+            <a href="./trailer.html">Trailer</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+      $('[data-toggle="popover-hover"]').popover({
+        html: true,
+        trigger: "hover",
+        placement: "bottom",
+        content: function () {
+          return '<img src="' + $(this).data("img") + '" />';
+        },
+      });
+    </script>
+  </body>
+</html>
